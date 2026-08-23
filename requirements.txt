@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+sqlalchemy[asyncio]
+asyncpg
+langgraph
+langchain-anthropic
+pydantic
+python-dotenv
