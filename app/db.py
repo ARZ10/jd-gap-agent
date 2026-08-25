@@ -15,4 +15,7 @@ AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
 
 class Base(DeclarativeBase):
     pass
+# Base is not useless. It inherits from DeclarativeBase. DeclarativeBase(from SQLALchemy)
+# is the class that contains all the real machinery. The code that knows how to turn a Python
+# class with `Mapped[...]` type annotation into an actual SQL table definition.
 
