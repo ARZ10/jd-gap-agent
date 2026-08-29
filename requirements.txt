@@ -6,3 +6,6 @@ langgraph
 langchain-anthropic
 pydantic
 python-dotenv
+pytest
+pytest-asyncio
+httpx
