@@ -28,24 +28,26 @@ If the input doesn't contain extractable requirements, the agent routes to an er
 
 ## Architecture
 
+```
 Request → FastAPI (/analyze)
-│
-▼
-LangGraph agent
-│
-┌─────┴─────┐
-│ extract │ ← Claude, structured output (ExtractedRequirements)
-└─────┬─────┘
-│
-conditional edge
-(empty skills? → error : match)
-│
-┌─────┴─────┐
-│ match │ ← gap analysis tool (set comparison)
-└─────┬─────┘
-│
-▼
-Postgres (persisted) → JSON response
+            │
+            ▼
+      LangGraph agent
+            │
+      ┌─────┴─────┐
+      │  extract   │ ← Claude, structured output (ExtractedRequirements)
+      └─────┬─────┘
+            │
+      conditional edge
+      (empty skills? → error : match)
+            │
+      ┌─────┴─────┐
+      │   match    │ ← gap analysis tool (set comparison)
+      └─────┬─────┘
+            │
+            ▼
+      Postgres (persisted) → JSON response
+```
 
 
 ## Running locally
@@ -115,14 +117,17 @@ Tests mock the LLM call (no API cost, deterministic) but run against a real Post
 Every push runs the test suite against a clean Postgres instance via GitHub Actions (`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
 
 ## Project structure
+
+```
 app/
-├── [main.py](http://main.py) # FastAPI app and routes\
-├── [db.py](http://db.py) # Async SQLAlchemy engine/session setup\
-├── [models.py](http://models.py) # Database models (Analysis table)\
-├── [schemas.py](http://schemas.py) # Pydantic schemas — API I/O and LLM structured output\
-├── [graph.py](http://graph.py) # LangGraph agent: nodes, conditional edges, compiled graph\
-└── [tools.py](http://tools.py) # Agent tools (gap analysis)\
-tests/\
-└── test_[analyze.py](http://analyze.py)\
-docker-compose.yml\
+├── main.py      # FastAPI app and routes
+├── db.py        # Async SQLAlchemy engine/session setup
+├── models.py    # Database models (Analysis table)
+├── schemas.py   # Pydantic schemas — API I/O and LLM structured output
+├── graph.py     # LangGraph agent: nodes, conditional edges, compiled graph
+└── tools.py     # Agent tools (gap analysis)
+tests/
+└── test_analyze.py
+docker-compose.yml
 Dockerfile
+```
