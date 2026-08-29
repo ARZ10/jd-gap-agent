@@ -116,13 +116,13 @@ Every push runs the test suite against a clean Postgres instance via GitHub Acti
 
 ## Project structure
 app/
-├── [main.py](http://main.py) # FastAPI app and routes
-├── [db.py](http://db.py) # Async SQLAlchemy engine/session setup
-├── [models.py](http://models.py) # Database models (Analysis table)
-├── [schemas.py](http://schemas.py) # Pydantic schemas — API I/O and LLM structured output
-├── [graph.py](http://graph.py) # LangGraph agent: nodes, conditional edges, compiled graph
-└── [tools.py](http://tools.py) # Agent tools (gap analysis)
-tests/
-└── test_[analyze.py](http://analyze.py)
-docker-compose.yml
+├── [main.py](http://main.py) # FastAPI app and routes\
+├── [db.py](http://db.py) # Async SQLAlchemy engine/session setup\
+├── [models.py](http://models.py) # Database models (Analysis table)\
+├── [schemas.py](http://schemas.py) # Pydantic schemas — API I/O and LLM structured output\
+├── [graph.py](http://graph.py) # LangGraph agent: nodes, conditional edges, compiled graph\
+└── [tools.py](http://tools.py) # Agent tools (gap analysis)\
+tests/\
+└── test_[analyze.py](http://analyze.py)\
+docker-compose.yml\
 Dockerfile
