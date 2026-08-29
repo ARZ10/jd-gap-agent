@@ -3,6 +3,14 @@ from unittest.mock import AsyncMock, patch
 from httpx import AsyncClient, ASGITransport
 from app.main import app
 from app. schemas import ExtractedRequirements
+from app.db import engine, Base
+
+@pytest.fixture(autouse=True)
+async def setup_db():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    yield
+    await engine.dispose()
 
 
 @pytest.mark.asyncio
